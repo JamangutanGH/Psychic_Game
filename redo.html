@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>HW_3</title>
+</head>
+
+<body>
+
+    <h1>The Psychic Gamne</h1>
+
+    <p>Guess What letter I'm thinking of</p>
+
+    <p>wins:
+        <span id="winCounter"></span>
+    </p>
+    <p>losses:
+        <span id="lossCounter"></span>
+    </p>
+    <p>Guesses Left:
+        <span class="guessesCounter"></span>
+    </p>
+    <p>Your guesses so far:
+        <span class="guessDisplay"></span>
+    </p>
+
+    <script>
+        var winCounter = 0;
+        var lossCounter = 0;
+        var guessCounter = 9;
+        var guessDisplay = [];
+        //var winCondition;
+        //var lossCondtion;
+        var letterArray = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
+
+        //function computerGuess();
+        //function compare();
+        //function reset();
+
+
+
+        document.onkeyup = function (event) {
+            var playerGuess = event.key;
+            console.log(playerGuess);
+        }
+
+
+    </script>
+
+
+
+
+</body>
+
+</html>
