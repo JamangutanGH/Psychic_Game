@@ -21,10 +21,10 @@
         <span id="lossCounter"></span>
     </p>
     <p>Guesses Left:
-        <span class="guessesCounter"></span>
+        <span id="guessCounter"></span>
     </p>
     <p>Your guesses so far:
-        <span class="guessDisplay"></span>
+        <span id="guessDisplay"></span>
     </p>
 
     <script>
@@ -34,19 +34,30 @@
         var guessDisplay = [];
         //var winCondition;
         //var lossCondtion;
-        var letterArray = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
-
-        //function computerGuess();
         //function compare();
         //function reset();
+        var winCounterSpan = document.getElementById("winCounter");
+        var guessCounterSpan = document.getElementById("guessCounter");
 
-
+        var letterArray = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
+        var randomNum = Math.floor(Math.random() * letterArray.length);
+        var secretNumber = letterArray[randomNum];
+        console.log(secretNumber);
 
         document.onkeyup = function (event) {
             var playerGuess = event.key;
             console.log(playerGuess);
-        }
 
+
+            if (playerGuess === secretNumber) {
+                winCounter++;
+                guessCounter--;
+
+            }
+
+            winCounterSpan.textContent = winCounter;
+            guessCounterSpan.textContent = guessCounter;
+        }
 
     </script>
 
