@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>HW_3</title>
+    <link rel="stylesheet" href="./style.css">
 </head>
 
 <body>
@@ -32,17 +33,23 @@
         var lossCounter = 0;
         var guessCounter = 9;
         var guessDisplay = [];
-        //var winCondition;
-        //var lossCondtion;
-        //function compare();
-        //function reset();
+
         var winCounterSpan = document.getElementById("winCounter");
+        var lossCounterSpan = document.getElementById("lossCounter");
         var guessCounterSpan = document.getElementById("guessCounter");
+        var guessDisplaySpan = document.getElementById("guessDisplay");
 
         var letterArray = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
         var randomNum = Math.floor(Math.random() * letterArray.length);
         var secretNumber = letterArray[randomNum];
         console.log(secretNumber);
+
+        function reset() {
+            var letterArray = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
+            var randomNum = Math.floor(Math.random() * letterArray.length);
+            var secretNumber = letterArray[randomNum];
+            console.log(secretNumber);
+        }
 
         document.onkeyup = function (event) {
             var playerGuess = event.key;
@@ -51,12 +58,25 @@
 
             if (playerGuess === secretNumber) {
                 winCounter++;
+                randomNum = Math.floor(Math.random() * letterArray.length);
+                secretNumber = letterArray[randomNum];
+            } else {
                 guessCounter--;
+                guessDisplay.push(playerGuess);
+
+            }
+
+            if (guessCounter === 0) {
+                lossCounter++;
+                guessCounter = 9;
+                guessDisplay = [];
 
             }
 
             winCounterSpan.textContent = winCounter;
+            lossCounterSpan.textContent = lossCounter;
             guessCounterSpan.textContent = guessCounter;
+            guessDisplaySpan.textContent = guessDisplay;
         }
 
     </script>

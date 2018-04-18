@@ -5,66 +5,84 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Psychic Game</title>
+    <title>HW_3</title>
     <link rel="stylesheet" href="./style.css">
 </head>
 
 <body>
+
     <h1>The Psychic Gamne</h1>
 
     <p>Guess What letter I'm thinking of</p>
 
     <p>wins:
-        <span id="wins"></span>
+        <span id="winCounter"></span>
     </p>
     <p>losses:
-        <span id="losses"></span>
+        <span id="lossCounter"></span>
     </p>
     <p>Guesses Left:
-        <span class="guessesLeft"></span>
+        <span id="guessCounter"></span>
     </p>
     <p>Your guesses so far:
-        <span class="guessCount"></span>
+        <span id="guessDisplay"></span>
     </p>
 
     <script>
+        var winCounter = 0;
+        var lossCounter = 0;
+        var guessCounter = 9;
+        var guessDisplay = [];
 
-        var wins = 0;
-        var losses = 0;
-        var guessCount = 1;
-        var guessesLeft = 9;
-
-        var winsSpan = document.getElementById("wins");
-        var lossesSpan = document.getElementById("losses");
-        var guessCountSpan = document.getElementById("guessCount");
-        //var guessesLeftSpan = document.getElementById("guessesLeft");
+        var winCounterSpan = document.getElementById("winCounter");
+        var lossCounterSpan = document.getElementById("lossCounter");
+        var guessCounterSpan = document.getElementById("guessCounter");
+        var guessDisplaySpan = document.getElementById("guessDisplay");
 
         var letterArray = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
+        var randomNum = Math.floor(Math.random() * letterArray.length);
+        var secretNumber = letterArray[randomNum];
+        console.log(secretNumber);
 
-        document.onkeyup = function (event) {
-            var playerChoice = event.key;
-            console.log(playerChoice);
-
+        function reset() {
+            var letterArray = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
             var randomNum = Math.floor(Math.random() * letterArray.length);
-
-
             var secretNumber = letterArray[randomNum];
             console.log(secretNumber);
-
-            if (playerChoice === secretNumber) {
-                wins++
-                guessCount++;
-            } else {
-                losses++
-                guessCount++;
-
-                winsSpan.textContent = wins;
-                lossesSpan.textContent = losses;
-                guessCountSpan.textContent = guessCount;
-                //guessesLeftSpan.textContent = guessesLeft;
-            }
         }
+
+        document.onkeyup = function (event) {
+            var playerGuess = event.key;
+            console.log(playerGuess);
+
+
+            if (playerGuess === secretNumber) {
+                winCounter++;
+                randomNum = Math.floor(Math.random() * letterArray.length);
+                secretNumber = letterArray[randomNum];
+            } else {
+                guessCounter--;
+                guessDisplay.push(playerGuess);
+
+            }
+
+            if (guessCounter === 0) {
+                lossCounter++;
+                guessCounter = 9;
+                guessDisplay = [];
+
+            }
+
+            winCounterSpan.textContent = winCounter;
+            lossCounterSpan.textContent = lossCounter;
+            guessCounterSpan.textContent = guessCounter;
+            guessDisplaySpan.textContent = guessDisplay;
+        }
+
     </script>
+
+
+
 
 </body>
 
